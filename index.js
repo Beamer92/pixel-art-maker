@@ -1,13 +1,49 @@
 
 document.addEventListener("DOMContentLoaded", function() {
 
-  let currentColor = "white"
-  let curclr = document.querySelector(".curclr")
+  let currentColor = "white";
+  let curclr = document.querySelector(".curclr");
+  let table = document.querySelector(".tbl");
+  let dragflag = 0;
 
-  document.querySelector(".tbl").addEventListener('click', function(e) {
+    let tblWid = table.offsetWidth
+    let squares = Math.floor(tblWid/22)
+  //  console.log(squares + '     ' + squares * 15)
+
+    for(let i = 0; i < (15 * squares); i++)
+    {
+      let newdiv = document.createElement("div")
+      newdiv.setAttribute("id", `${i}`)
+      table.appendChild(newdiv)
+    }
+
+    table.addEventListener('click', function(e) {
     var div = e.target.closest('div')
     if( div !== null) {
       div.style.backgroundColor= currentColor
+      // console.log(dragflag + " click")
+    }
+  }, false);
+
+  table.addEventListener('mousedown', function(e){
+    dragflag=1;
+    // console.log(dragflag + " mousedown")
+  }, false);
+
+  table.addEventListener('mouseup', function(e) {
+    dragflag = 0;
+    // console.log(dragflag + " mouseup")
+  }, false);
+
+  //mouseenter didn't work for me here?
+  table.addEventListener('mouseover', function(e) {
+    if(dragflag === 1)
+    {
+      // console.log(dragflag + " mouseover")
+      var div = e.target.closest('div');
+      if( div !== null) {
+          div.style.backgroundColor= currentColor
+      }
     }
   }, false);
 
