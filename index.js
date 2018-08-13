@@ -19,27 +19,39 @@ document.addEventListener("DOMContentLoaded", function() {
 
     table.addEventListener('click', function(e) {
     var div = e.target.closest('div')
+	e.preventDefault();
     if( div !== null) {
+	  dragflag = 0;
       div.style.backgroundColor= currentColor
-      // console.log(dragflag + " click")
+      console.log(dragflag + " click")
     }
   }, false);
 
   table.addEventListener('mousedown', function(e){
-    dragflag=1;
-    // console.log(dragflag + " mousedown")
+	  e.preventDefault();
+    dragflag = 1;
+    console.log(dragflag + " mousedown")
   }, false);
 
   table.addEventListener('mouseup', function(e) {
+	  e.preventDefault();
     dragflag = 0;
-    // console.log(dragflag + " mouseup")
+     console.log(dragflag + " mouseup")
+  }, false);
+  
+  window.addEventListener('mouseup', function(e) {
+	e.preventDefault();
+	dragflag = 0;
+    console.log(dragflag + "Window mouseup")
+	  
   }, false);
 
-  //mouseenter didn't work for me here?
+ 
   table.addEventListener('mouseover', function(e) {
+	 e.preventDefault();
     if(dragflag === 1)
     {
-      // console.log(dragflag + " mouseover")
+       console.log(dragflag + " mouseover")
       var div = e.target.closest('div');
       if( div !== null) {
           div.style.backgroundColor= currentColor
@@ -48,6 +60,7 @@ document.addEventListener("DOMContentLoaded", function() {
   }, false);
 
   document.querySelector("footer").addEventListener('click', function(e) {
+	 e.preventDefault();
     var div = e.target.closest('div');
     if( div !== null) {
       currentColor = div.style.backgroundColor
