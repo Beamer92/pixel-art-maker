@@ -5,7 +5,8 @@ document.addEventListener("DOMContentLoaded", function() {
   let curclr = document.querySelector(".curclr");
   let table = document.querySelector(".tbl");
   let dragflag = 0;
-
+  let clrPicker = document.querySelector(".clrPick");
+  
     let tblWid = table.offsetWidth
     let squares = Math.floor(tblWid/22)
   //  console.log(squares + '     ' + squares * 15)
@@ -22,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	e.preventDefault();
     if( div !== null) {
 	  dragflag = 0;
-      div.style.backgroundColor= currentColor
+      div.style.backgroundColor = currentColor
       console.log(dragflag + " click")
     }
   }, false);
@@ -68,6 +69,9 @@ document.addEventListener("DOMContentLoaded", function() {
     }
     }, false);
 
-
+	clrPicker.addEventListener('change', function(e) {
+	  currentColor = clrPicker.value;
+      curclr.style.backgroundColor = currentColor	
+	}, false);
 
 });
